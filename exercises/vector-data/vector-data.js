@@ -8,6 +8,9 @@ import Snap from 'ol/interaction/Snap';
 import VectorLayer from 'ol/layer/Vector';
 import VectorSource from 'ol/source/Vector';
 import View from 'ol/View';
+import {Fill, Stroke, Style} from 'ol/style';
+
+import {getColor} from './color-function';
 
 const map = new Map({
   target: 'map-container',
@@ -24,6 +27,16 @@ const source = new VectorSource();
 
 const layer = new VectorLayer({
   source: source,
+  style: function (feature) {
+    return new Style({
+      fill: new Fill({
+        color: getColor(feature),
+      }),
+      stroke: new Stroke({
+        color: 'rgba(255,255,255,0.8)',
+      }),
+    });
+  },
 });
 
 map.addLayer(layer);

@@ -31,11 +31,27 @@
         border-radius: 0.25rem;
         text-decoration: none;
       }
+
+      #tools {
+        position: absolute;
+        top: 1rem;
+        left: 3rem;
+      }
+      #tools a {
+        display: inline-block;
+        padding: 0.5rem;
+        background: white;
+        cursor: pointer;
+      }
     </style>
   </head>
   <body>
     <a class="home-link" href="../../">Home</a>
     <div id="map-container"></div>
+    <div id="tools">
+      <a id="clear">Clear</a>
+      <a id="download" download="features.json">Download</a>
+    </div>
     <script src="./vector-data.js" type="module"></script>
   </body>
 </html>

@@ -5,6 +5,8 @@ import Point from 'ol/geom/Point';
 import TileLayer from 'ol/layer/Tile';
 import VectorLayer from 'ol/layer/Vector';
 import VectorSource from 'ol/source/Vector';
+import kompas from 'kompas';
+import {Fill, Icon, Style} from 'ol/style';
 import {Map, View} from 'ol';
 import {circular} from 'ol/geom/Polygon';
 import {fromLonLat} from 'ol/proj';
@@ -73,3 +75,48 @@ map.addControl(
     element: locate,
   }),
 );
+
+// Add a compass
+
+const style = new Style({
+  fill: new Fill({
+    color: 'rgba(0, 0, 255, 0.2)',
+  }),
+  image: new Icon({
+    src: '../../data/location-heading.svg',
+    rotateWithView: true,
+  }),
+});
+
+layer.setStyle(style);
+
+function startCompass() {
+  kompas()
+    .watch()
+    .on('heading', function (heading) {
+      style.getImage().setRotation((Math.PI / 180) * heading);
+    });
+}
+
+if (
+  window.DeviceOrientationEvent &&
+  typeof DeviceOrientationEvent.requestPermission === 'function'
+) {
+  locate.addEventListener('click', async () => {
+    try {
+      const permission = await DeviceOrientationEvent.requestPermission();
+
+      if (permission === 'granted') {
+        startCompass();
+      } else {
+        alert('Device orientation permission denied');
+      }
+    } catch (error) {
+      alert(`ERROR: ${error.message}`);
+    }
+  });
+} else if ('ondeviceorientationabsolute' in window) {
+  startCompass();
+} else {
+  alert('No device orientation provided by device');
+}

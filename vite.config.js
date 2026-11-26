@@ -14,8 +14,12 @@ export default defineConfig({
       input: {
         main: resolve(__dirname, 'index.html'),
         vectorData: resolve(__dirname, 'exercises/vector-data/index.html'),
+        mobile: resolve(__dirname, 'exercises/mobile/index.html'),
       },
     },
     sourcemap: true,
+  },
+  server: {
+    allowedHosts: ['silent-papayas-live.loca.lt'],
   },
 });

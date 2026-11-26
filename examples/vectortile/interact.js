@@ -59,7 +59,7 @@ map.on('pointermove', function (event) {
     new Feature({
       geometry: new Point(event.coordinate),
       layers: Array.from(new Set(layers)).join(', '),
-    })
+    }),
   );
   //! [layers-label]
 });

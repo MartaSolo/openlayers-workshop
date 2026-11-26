@@ -1,5 +1,6 @@
 import {viteStaticCopy as copy} from 'vite-plugin-static-copy';
 import {defineConfig} from 'vite';
+import {resolve} from 'node:path';
 
 export default defineConfig({
   plugins: [
@@ -9,6 +10,12 @@ export default defineConfig({
   ],
   base: './',
   build: {
+    rollupOptions: {
+      input: {
+        main: resolve(__dirname, 'index.html'),
+        vectorData: resolve(__dirname, 'exercises/vector-data/index.html'),
+      },
+    },
     sourcemap: true,
   },
 });

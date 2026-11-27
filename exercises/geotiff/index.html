@@ -31,11 +31,23 @@
         border-radius: 0.25rem;
         text-decoration: none;
       }
+
+      #controls {
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        z-index: 1;
+      }
     </style>
   </head>
   <body>
     <a class="home-link" href="../../">Home</a>
+    <div id="controls">
+      <select id="visualization"></select>
+      <select id="image"></select>
+    </div>
     <div id="map-container"></div>
+
     <script src="./geotiff.js" type="module"></script>
   </body>
 </html>

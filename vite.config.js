@@ -15,6 +15,7 @@ export default defineConfig({
         main: resolve(__dirname, 'index.html'),
         vectorData: resolve(__dirname, 'exercises/vector-data/index.html'),
         mobile: resolve(__dirname, 'exercises/mobile/index.html'),
+        geotiff: resolve(__dirname, 'exercises/geotiff/index.html'),
       },
     },
     sourcemap: true,
